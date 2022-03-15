@@ -14,7 +14,7 @@
         	&nbsp;&nbsp;&nbsp;       	        	
         </h2>
         <h2>
-        	<a href="listar-produtos.jsp">Ver Produtos</a>
+        	<a href="listaprodutos.jsp">Ver Produtos</a>
         	&nbsp;&nbsp;&nbsp;       	        	
         </h2>
 	</center>

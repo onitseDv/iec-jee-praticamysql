@@ -16,6 +16,7 @@ import model.Categoria;
 
 @WebServlet(urlPatterns = "/edit")
 public class EditarCategoria extends HttpServlet {
+    @EJB
     private CategoriaDAO dao = new CategoriaDAO();
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

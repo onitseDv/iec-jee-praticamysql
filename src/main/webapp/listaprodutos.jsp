@@ -17,13 +17,13 @@
 	</center>
     <div align="center">
         <p>Filtrar por categoria: <select id="categoria" name="categoria" onChange="location.href=this.value">
-            <option value="listar-produtos.jsp">Selecione Categoria</option>
-            <option value="listar-produtos.jsp">Todas</option>
+            <option value="listaprodutos.jsp">Selecione Categoria</option>
+            <option value="listaprodutos.jsp">Todas</option>
             <c:forEach var="categoria" items="${listaCategoria}">
-                <option value='listar-produtos.jsp?categoria=<c:out value="${categoria.codigo}" />'><c:out value="${categoria.nome}" /></option>
+                <option value='listaprodutos.jsp?categoria=<c:out value="${categoria.codigo}" />'><c:out value="${categoria.nome}" /></option>
             </c:forEach>
         </select></p>
-        <form action="listar-produtos.jsp">
+        <form action="listaprodutos.jsp">
             <p>Pesquisar por nome: <input type="text" id="qnome" name="qnome" size="20" />&nbsp;&nbsp;&nbsp;
             <input type="submit" value="Pesquisar"/></p>
         </form>
@@ -44,7 +44,7 @@
                     <td><c:out value="${produto.categoria.nome}" /></td>
                     
                     <td>
-                    	<a href="deletar-produto?id=<c:out value='${produto.codigo}' />">Deletar</a>
+                    	<a href="deletarprodutos?id=<c:out value='${produto.codigo}' />">Deletar</a>
                     </td>
                 </tr>
             </c:forEach>

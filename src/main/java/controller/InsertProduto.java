@@ -19,14 +19,14 @@ import funcionalidades.ProdutoFuncionalidade;
 import model.Categoria;
 import model.Produto;
 
-@WebServlet("/inserir-produto")
+@WebServlet("/inserirprodutos")
 public class InsertProduto extends HttpServlet{
 
     @EJB
-    private ProdutoFuncionalidade service;
+    private ProdutoFuncionalidade produtoFunc;
 
     @EJB
-    private CategoriaFuncionalidade categoriaService;
+    private CategoriaFuncionalidade categoriaFunc;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
@@ -35,13 +35,13 @@ public class InsertProduto extends HttpServlet{
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
-    }
+    } 
     
     private void listaCategoria(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        List<Categoria> listaCategoria = categoriaService.listar();
+        List<Categoria> listaCategoria = categoriaFunc.listar();
         request.setAttribute("listaCategoria", listaCategoria);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("inserir-produto.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("inserirprodutos.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -54,14 +54,14 @@ public class InsertProduto extends HttpServlet{
 		
 		Categoria categoria;
         try {
-            categoria = categoriaService.porCodigo(codigoCategoria);
+            categoria = categoriaFunc.porCodigo(codigoCategoria);
 
             if (Objects.isNull(categoria)) {
                 PrintWriter out = response.getWriter();
                 out.print("<html>");
-                out.print("<h2> Nao foi possivel inserir o produto, a categoria selecionada invalida!</h2>");
+                out.print("<h2> Categoria inválida!</h2>");
                 out.print("<br/>");
-                out.print("<a href = 'inserir-produto'> Voltar </a>");
+                out.print("<a href = 'inserirprodutos'> Voltar </a>");
                 out.print("</html>");
             } else {
     
@@ -71,16 +71,16 @@ public class InsertProduto extends HttpServlet{
                 produto.setCategoria(categoria);
     
                 try {
-                    service.inserir(produto);
+                    produtoFunc.inserir(produto);
             
-                    response.sendRedirect(request.getContextPath() + "/listar-produtos.jsp");
+                    response.sendRedirect(request.getContextPath() + "/listaprodutos.jsp");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                     PrintWriter out = response.getWriter();
                     out.print("<html>");
-                    out.print("<h2> Nao foi possivel inserir o produto!</h2>");
+                    out.print("<h2> Produto inválido!</h2>");
                     out.print("<br/>");
-                    out.print("<a href = 'listar-produtos.jsp'> Voltar </a>");
+                    out.print("<a href = 'listaprodutos.jsp'> Voltar </a>");
                     out.print("</html>");
                 }
     
@@ -90,9 +90,9 @@ public class InsertProduto extends HttpServlet{
             e.printStackTrace();
             PrintWriter out = response.getWriter();
             out.print("<html>");
-            out.print("<h2> Nao foi possivel inserir o produto!</h2>");
+            out.print("<h2> Produto inválido!</h2>");
             out.print("<br/>");
-            out.print("<a href = 'listar-produtos.jsp'> Voltar </a>");
+            out.print("<a href = 'listaprodutos.jsp'> Voltar </a>");
             out.print("</html>");
         }
 	}
