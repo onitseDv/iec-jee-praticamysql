@@ -13,6 +13,10 @@
         	<a href="inserir.jsp">Inserir Nova Categoria</a>
         	&nbsp;&nbsp;&nbsp;       	        	
         </h2>
+        <h2>
+        	<a href="listar-produtos.jsp">Ver Produtos</a>
+        	&nbsp;&nbsp;&nbsp;       	        	
+        </h2>
 	</center>
     <div align="center">
         <table border="1" cellpadding="5">

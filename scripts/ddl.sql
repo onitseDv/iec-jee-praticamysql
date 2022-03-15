@@ -1,1 +1,4 @@
-create table categoria (codigo int primary key auto_increment, nome varchar(100));
+create table categoria (
+    codigo int primary key auto_increment, 
+    nome varchar(100)
+);

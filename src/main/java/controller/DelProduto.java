@@ -10,19 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.CategoriaDAO;
+import funcionalidades.ProdutoFuncionalidade;
 
-@WebServlet(urlPatterns = "/delete")
-public class DeletarCategoria extends HttpServlet {
+@WebServlet(urlPatterns = "/deletar-produto")
+public class DelProduto  extends HttpServlet {
 	@EJB
-    private CategoriaDAO dao = new CategoriaDAO();
+    private ProdutoFuncionalidade service;
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
 			Integer codigo = Integer.parseInt(request.getParameter("id"));
-            dao.deletar(codigo);
-            response.sendRedirect(request.getContextPath() + "/index.jsp");			
+            service.deletar(codigo);
+            response.sendRedirect(request.getContextPath() + "/listar-produtos.jsp");
 		} catch (Exception ex) {
 			throw new ServletException(ex);
 		}
 	}
+    
 }
