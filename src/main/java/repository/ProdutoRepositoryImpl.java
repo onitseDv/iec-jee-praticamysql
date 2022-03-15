@@ -50,7 +50,7 @@ public class ProdutoRepositoryImpl implements ProdutoRepository {
 
     @Override
     public List<Produto> listarPorNomeComecandoCom(String nome) {
-        return this.em.createQuery("select p from Produto p where lower(p.nome) LIKE lower(:nome)", Produto.class)
+        return this.em.createQuery("select p from Produto p where upper(p.nome) like upper(:nome)", Produto.class)
         .setParameter("nome", nome + "%").getResultList();
     }
     
